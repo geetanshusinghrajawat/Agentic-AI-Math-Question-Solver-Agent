@@ -3,7 +3,7 @@
 An agentic AI application that solves mathematical problems using natural language — powered by LLaMA 3.1, LangChain agents, and a multi-tool architecture including a calculator, reasoning engine, and web search.
 
 ## 🚀 Live Demo
-[**Try it here →**]([your-streamlit-link](https://agentic-ai-math-question-solver-agent-by-geetanshu.streamlit.app/))
+[**Try it here →**](https://agentic-ai-math-question-solver-agent-by-geetanshu.streamlit.app/)
 
 ## 📌 Overview
 
