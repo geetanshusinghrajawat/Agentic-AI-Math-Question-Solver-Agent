@@ -17,7 +17,7 @@ if not groq_api:
     st.info('Please Provide Groq API key')
     st.stop()
 
-model=ChatGroq(model='llama-3.1-8b-instant',groq_api_key=groq_api)
+model=ChatGroq(model='openai/gpt-oss-20b',groq_api_key=groq_api)
 
 ######----------- INITIALIZING AGENTS -----------###############
 
