@@ -17,7 +17,7 @@ if not groq_api:
     st.info('Please Provide Groq API key')
     st.stop()
 
-model=ChatGroq(model='qwen/qwen3.6-27b',groq_api_key=groq_api)
+model=ChatGroq(model='qwen/qwen3.6-27b',groq_api_key=groq_api,reasoning_format="hidden")
 
 ######----------- INITIALIZING AGENTS -----------###############
 
