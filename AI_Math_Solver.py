@@ -30,8 +30,6 @@ search_tool = Tool(
     description="Useful for answering current events, history, people, science and general knowledge questions."
 )
 
-math_chain=LLMMathChain.from_llm(llm=model)
-
 def math_tool_func(question):
     math_expr = ''.join(re.findall(r'[\d\.\+\-\*\/\^\(\)]+', question))
     if not math_expr:
