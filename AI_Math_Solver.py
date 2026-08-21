@@ -1,9 +1,10 @@
 import streamlit as st
+import numexpr
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_classic.agents import Tool,initialize_agent
 from langchain_classic.agents.agent_types import AgentType
-from langchain_classic.chains import LLMChain, LLMMathChain
+from langchain_classic.chains import LLMChain
 from langchain_core.prompts import PromptTemplate
 from langchain_groq import ChatGroq
 import re
@@ -32,8 +33,15 @@ search_tool = Tool(
 math_chain=LLMMathChain.from_llm(llm=model)
 
 def math_tool_func(question):
-    math_expr=''.join(re.findall(r'[\d\.\+\-\*\/\^\(\)]+',question))
-    return math_chain.run(math_expr)
+    math_expr = ''.join(re.findall(r'[\d\.\+\-\*\/\^\(\)]+', question))
+    if not math_expr:
+        return "I couldn't find a valid math expression in that question."
+    try:
+        expr = math_expr.replace('^', '**')  # numexpr uses ** for power, not ^
+        result = numexpr.evaluate(expr).item()
+        return f"Answer: {result}"
+    except Exception as e:
+        return f"Sorry, I couldn't evaluate that expression ({e})."
 
 calculator_tool=Tool(
     name='calculator',
